@@ -16,3 +16,25 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route::view('/hello', 'hello', ['name' => 'Abdul Aziz']);
+
+Route::get('/hai', function () {
+    return view('hello', ['name' => 'abdaziz']);
+});
+
+Route::get('/products/{id}', function ($productId) {
+    return "Product : " . $productId;
+});
+
+Route::get('/products/{id}/items/{item}', function ($productId, $itemId) {
+    return "Product : " . $productId . ", Item : " . $itemId;
+});
+
+Route::get('/categories/{id}', function ($categoryId) {
+    return "Categories : " . $categoryId;
+})->where('id', '[0-9]+');
+
+Route::get('/hello', [\App\Http\Controllers\HelloController::class, 'hello']);
+
+Route::get('/cookie/set', [\App\Http\Controllers\CookieController::class, 'createCookie']);
